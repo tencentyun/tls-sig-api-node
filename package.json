@@ -1,0 +1,14 @@
+{
+  "name": "tls-sig-api",
+  "version": "1.0.0",
+  "main": "TLSAPI.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "author": "okhowang",
+  "license": "MIT",
+  "repository": "https://github.com/tencentyun/tls-sig-api-node.git",
+  "dependencies": {
+    "mocha": "^5.0.5"
+  }
+}
