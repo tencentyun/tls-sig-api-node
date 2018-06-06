@@ -97,6 +97,7 @@ Sig.prototype._verify = function(str, signture){
  * 失败时返回false
  */
 Sig.prototype._genSignContent = function(obj){
+    var ret = '';
     var aid3rd = 'TLS.appid_at_3rd'
     if(obj.hasOwnProperty(aid3rd)){
         ret += aid3rd + ':' + obj[aid3rd] + '\n';
@@ -109,7 +110,6 @@ Sig.prototype._genSignContent = function(obj){
         'TLS.expire_after'
     ];
 
-    var ret = '';
     for (var i = 0; i < arr.length; i++) {
         ret += arr[i] + ':' + obj[arr[i]] + '\n';
     }
