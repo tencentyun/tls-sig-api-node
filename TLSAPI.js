@@ -1,7 +1,6 @@
 var crypto = require('crypto');
 var zlib = require('zlib');
 var fs = require('fs');
-var path = require('path');
 
 var base64url = {};
 
@@ -45,11 +44,11 @@ var Sig = function(config){
     this.sdk_appid  = config.sdk_appid;
     this.expire_after = (config.expire_after || 180 * 24 * 3600).toString();
     if(config.private_key)
-        this.private_key = fs.readFileSync(path.join(__dirname, config.private_key)).toString();
+        this.private_key = fs.readFileSync(config.private_key).toString();
     if(config.public_key)
-        this.public_key = fs.readFileSync(path.join(__dirname, config.public_key)).toString();
+        this.public_key = fs.readFileSync(config.public_key).toString();
     if(config.private_key_string)
-        this.private_key = config.private_key_string
+        this.private_key = config.private_key_string;
     if(config.public_key_string)
         this.public_key = config.public_key_string
 };
@@ -98,7 +97,7 @@ Sig.prototype._verify = function(str, signture){
  */
 Sig.prototype._genSignContent = function(obj){
     var ret = '';
-    var aid3rd = 'TLS.appid_at_3rd'
+    var aid3rd = 'TLS.appid_at_3rd';
     if(obj.hasOwnProperty(aid3rd)){
         ret += aid3rd + ':' + obj[aid3rd] + '\n';
     }
@@ -183,7 +182,7 @@ Sig.prototype.verifySig = function(sig, identifier) {
             return false;
         }
         if (json['TLS.sdk_appid'] != this.sdk_appid)
-            return false
+            return false;
 
         var content = this._genSignContent(json);
         return this._verify(content, json['TLS.sig']);
@@ -247,6 +246,6 @@ Sig.prototype.verifySigWithUserbuf = function(sig, identifier) {
     } catch (e) {
         return false;
     }
-}
+};
 
 exports.Sig = Sig;
