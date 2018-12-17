@@ -4,6 +4,10 @@ var fs = require('fs');
 
 var base64url = {};
 
+var newBuffer = function (fill, encoding) {
+    return Buffer.from ? Buffer.from(fill, encoding) : new Buffer(fill, encoding)
+};
+
 base64url.unescape = function unescape (str) {
     return (str + Array(5 - str.length % 4))
         .replace(/_/g, '=')
@@ -18,18 +22,18 @@ base64url.escape = function escape (str) {
 };
 
 base64url.encode = function encode (str) {
-    return this.escape(new Buffer(str).toString('base64'));
+    return this.escape(newBuffer(str).toString('base64'));
 };
 
 base64url.decode = function decode (str) {
-    return new Buffer(this.unescape(str), 'base64').toString();
+    return newBuffer(this.unescape(str), 'base64').toString();
 };
 
 function base64encode(str) {
-    return new Buffer(str).toString('base64')
+    return newBuffer(str).toString('base64')
 }
 function base64decode(str) {
-    return new Buffer(str, 'base64').toString()
+    return newBuffer(str, 'base64').toString()
 }
 
 /**
@@ -162,7 +166,7 @@ Sig.prototype.genSig = function(identifier){
     obj['TLS.sig'] = signature;
 
     var text = JSON.stringify(obj);
-    var compressed = zlib.deflateSync(new Buffer(text)).toString('base64');
+    var compressed = zlib.deflateSync(newBuffer(text)).toString('base64');
 
     return base64url.escape(compressed);
 };
@@ -176,7 +180,7 @@ Sig.prototype.genSig = function(identifier){
 Sig.prototype.verifySig = function(sig, identifier) {
     try {
         var compressed = base64url.unescape(sig);
-        var text = zlib.inflateSync(new Buffer(compressed, 'base64'));
+        var text = zlib.inflateSync(newBuffer(compressed, 'base64'));
         var json = JSON.parse(text);
         if (json['TLS.identifier'] !== identifier) {
             return false;
@@ -215,7 +219,7 @@ Sig.prototype.genSigWithUserbuf = function(identifier, userbuf){
     obj['TLS.sig'] = signature;
 
     var text = JSON.stringify(obj);
-    var compressed = zlib.deflateSync(new Buffer(text)).toString('base64');
+    var compressed = zlib.deflateSync(newBuffer(text)).toString('base64');
 
     return base64url.escape(compressed);
 };
@@ -229,7 +233,7 @@ Sig.prototype.genSigWithUserbuf = function(identifier, userbuf){
 Sig.prototype.verifySigWithUserbuf = function(sig, identifier) {
     try {
         var compressed = base64url.unescape(sig);
-        var text = zlib.inflateSync(new Buffer(compressed, 'base64'));
+        var text = zlib.inflateSync(newBuffer(compressed, 'base64'));
         var json = JSON.parse(text);
         if (json['TLS.identifier'] !== identifier) {
             return false;
