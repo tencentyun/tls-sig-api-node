@@ -1,6 +1,6 @@
 {
   "name": "tls-sig-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "TLSAPI.js",
   "scripts": {
     "test": "mocha test/test.js"
