@@ -1,5 +1,9 @@
-see demo
+## npm 集成
+```shell 
+npm install tls-sig-api
+```
 
+## 接口调用
 ```javascript
 var sig = require('tls-sig-api');
 var config = {
