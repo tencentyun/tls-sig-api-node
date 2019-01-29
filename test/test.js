@@ -4,18 +4,19 @@ var private_key = `-----BEGIN EC PARAMETERS-----
 BgUrgQQACg==
 -----END EC PARAMETERS-----
 -----BEGIN EC PRIVATE KEY-----
-MHQCAQEEIEJDBDY4KVdj3dPBacADreB772ok45A57YWrUUvc5fMQoAcGBSuBBAAK
-oUQDQgAEaPVFHhWqRDnKnVlyU5JIzXOUyOJd/pPUwhLUovf+PYBm7otRBptnvJ4E
-oJ4qeSJNG0v4XdiqM3mtChkhUEFT3Q==
+MHcCAQEEIJE3x8T2vGLrBvr2vNQkc7TUAThK/dEwRI5UAWeXdWNAoAoGCCqGSM49
+AwEHoUQDQgAEvYrD/8S4m+xGdb0uTlMvoDrGAcHnrDzA71ok8oDwFLBmb9Txy6Gt
+HIqrBJZDtXzBsDa8ziicdTqNfeEYvksqVQ==
 -----END EC PRIVATE KEY-----
 `
 var public_key = `-----BEGIN PUBLIC KEY-----
-MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEaPVFHhWqRDnKnVlyU5JIzXOUyOJd/pPU
-whLUovf+PYBm7otRBptnvJ4EoJ4qeSJNG0v4XdiqM3mtChkhUEFT3Q==
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvYrD/8S4m+xGdb0uTlMvoDrGAcHn
+rDzA71ok8oDwFLBmb9Txy6GtHIqrBJZDtXzBsDa8ziicdTqNfeEYvksqVQ==
 -----END PUBLIC KEY-----
 `
 var config = {
-    "sdk_appid": 1400001052,
+    "sdk_appid": 1400000000,
     "expire_after": 99999999,
     "private_key_string": private_key,
     "public_key_string": public_key
@@ -48,7 +49,7 @@ it('exist verify', function(done){
 
 it('without3rd', function(done){
     var api = new TLSAPI.Sig({
-        "sdk_appid": 1400000226,
+        "sdk_appid": 1400000000,
         "public_key_string": `-----BEGIN PUBLIC KEY-----
 MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAED5Ffi4qIe4XUZ5zDGR9pC0Z6UL/gCHf0
 vgoLVestQxqOGJB5mcbaKULeriaevZoq0Sx8gGtfDlSf4fXwzPtGvg==
